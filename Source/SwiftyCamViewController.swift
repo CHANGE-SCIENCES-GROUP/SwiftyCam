@@ -683,15 +683,16 @@ open class SwiftyCamViewController: UIViewController {
 	/// Configure image quality preset
 
 	fileprivate func configureVideoPreset() {
-		if currentCamera == .front {
-			session.sessionPreset = AVCaptureSession.Preset(rawValue: videoInputPresetFromVideoQuality(quality: .high))
-		} else {
+// SE: We need a lower resolution on front camera.
+//		if currentCamera == .front {
+//			session.sessionPreset = AVCaptureSession.Preset(rawValue: videoInputPresetFromVideoQuality(quality: .high))
+//		} else {
 			if session.canSetSessionPreset(AVCaptureSession.Preset(rawValue: videoInputPresetFromVideoQuality(quality: videoQuality))) {
 				session.sessionPreset = AVCaptureSession.Preset(rawValue: videoInputPresetFromVideoQuality(quality: videoQuality))
 			} else {
 				session.sessionPreset = AVCaptureSession.Preset(rawValue: videoInputPresetFromVideoQuality(quality: .high))
 			}
-		}
+//		}
 	}
 
 	/// Add Video Inputs
